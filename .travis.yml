@@ -2,6 +2,6 @@ language: node_js
 node_js:
   - "7"
 before_script:
-  - npm install standard --save-dev
+  - npm install mocha standard --save-dev
 script:
   - npm test

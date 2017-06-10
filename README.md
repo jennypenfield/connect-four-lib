@@ -1,5 +1,7 @@
 # Connect Four Library
 
+[![Build Status](https://travis-ci.org/jennypenfield/connect-four-lib.svg?branch=master)](https://travis-ci.org/jennypenfield/connect-four-lib)
+
 This is a project to implement the game logic for the classic game
 [Connect Four].
 
