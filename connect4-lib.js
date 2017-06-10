@@ -19,7 +19,22 @@ function gameStatus (board) {
 
 // returns true or false
 function validBoard (board) {
-  // TODO: write me
+  // checks if is not an Array or undenied
+  if (typeof board === 'undefined' || board.constructor !== Array) return false
+
+  if (board.length === 7 &&
+    board[0].length === 6 &&
+    board[1].length === 6 &&
+    board[2].length === 6 &&
+    board[3].length === 6 &&
+    board[4].length === 6 &&
+    board[5].length === 6 &&
+    board[6].length === 6 &&
+    board[6].length === 6) {
+    return true
+  } else {
+    return false
+  }
 }
 
 module.exports = {
