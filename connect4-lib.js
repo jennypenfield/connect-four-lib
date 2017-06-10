@@ -14,8 +14,8 @@ const emptyBoard = [
 // - what squares are the winning position?
 // - returns null if the board passed in is not valid
 function gameStatus (board) {
-  // TODO: write me
-
+  // gameStatus should return null if it receives no arguments
+  // should return null if a game board is not passed to it
   if (!isGoodInput(board)) return null
 
   // if there is a winner should return 'winner_red' || 'winner_yellow'
@@ -35,12 +35,7 @@ function isBoardFull () {
 }
 
 function isGoodInput (input) {
-// gameStatus should return null if it receives no arguments
-// gameStatus should return null if a game board is not passed to it
-// gameStatus should return null if a game board is not passed to it
-// gameStatus should return null if a game board is not passed to it
-// gameStatus should return null if a game board is not passed to it
-// gameStatus should return null if a game board is not passed to it
+  if (!input) return false
 }
 
 function checkRowWinner () {
@@ -63,14 +58,11 @@ function validBoard (board) {
   // checks if is not an Array or undenied
   if (typeof board === 'undefined' || board.constructor !== Array) return false
 
-  if (board.length === 7) {
-    for (var i = 0; i < board.length; i++) {
-      if (board[i].length === 6) {
-        return true
-      } else {
-        return false
-      }
-    }
+  // checks for row/pices lenght
+  if (board.length === 7 && board[0].length === 6 && board[1].length === 6 &&
+                            board[2].length === 6 && board[3].length === 6 &&
+                            board[4].length === 6 && board[5].length === 6) {
+    return true
   }
   return false
 }

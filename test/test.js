@@ -56,6 +56,27 @@ const redColWin1 = [
   [null, null, null, null, null, null]
 ]
 
+const bigBoard = [
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null]
+]
+
+const moreThan6pieces = [
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null]
+]
+
 // -----------------------------------------------------------------------------
 // Valid Board
 // -----------------------------------------------------------------------------
@@ -94,6 +115,14 @@ function testValidBoard () {
   })
 
   // TODO: add many more test cases here
+
+  it('boards should not have more than 7 columns', function () {
+    assert.strictEqual(connect4Lib.validBoard(bigBoard), false)
+  })
+
+  it('Columns should not have more than 6 pieces', function () {
+    assert.strictEqual(connect4Lib.validBoard(moreThan6pieces), false)
+  })
 }
 
 // -----------------------------------------------------------------------------
@@ -130,6 +159,18 @@ function testBadInput () {
   })
 
   // TODO: add many more test cases here
+
+  it('gameStatus should return null if a game board has more than 7 columns', function () {
+    assert.strictEqual(connect4Lib.gameStatus(bigBoard), null)
+  })
+
+  it('gameStatus should return null if a game board is false', function () {
+    assert.strictEqual(connect4Lib.gameStatus(false), null)
+  })
+
+  it('gameStatus should return null if a game board is undefined', function () {
+    assert.strictEqual(connect4Lib.gameStatus(undefined), null)
+  })
 }
 
 // -----------------------------------------------------------------------------
