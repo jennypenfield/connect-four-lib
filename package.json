@@ -13,7 +13,7 @@
     "mocha": "3.4.2"
   },
   "scripts": {
-    "test": "mocha && standard src-js/*.js"
+    "test": "mocha"
   },
   "license": "ISC"
 }
