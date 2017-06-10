@@ -16,12 +16,15 @@ const emptyBoard = [
 function gameStatus (board) {
   // gameStatus should return null if it receives no arguments
   // should return null if a game board is not passed to it
-  if (!isGoodInput(board)) return null
+  if (!validBoard(board)) return null
 
   // if there is a winner should return 'winner_red' || 'winner_yellow'
-  if (checkRowWinner()) return checkRowWinner()
-  if (checkColumnWinner()) return checkColumnWinner()
-  if (checkDiagonalWinner()) return checkDiagonalWinner()
+  let rowValue = checkRowWinner(board)
+  if (rowValue === 'r') return 'winner_red'
+  if (rowValue === 'y') return 'winner_yellow'
+
+  checkColumnWinner()
+  checkDiagonalWinner()
 
   // if there is no winners and board is full return tie
   if (isBoardFull) return 'tie'
@@ -34,13 +37,15 @@ function isBoardFull () {
   // TODO: return true or false
 }
 
-function isGoodInput (input) {
-  if (!input) return false
-}
-
-function checkRowWinner () {
-  // TODO: should return null || 'winner_red' || 'winner_yellow'
-
+function checkRowWinner (board) {
+  // should return null || 'winner_red' || 'winner_yellow'
+  // needs more work... is only chacking thefirst 4 spots
+  for (let i = 0; i < board.length; i++) {
+    if (board[i][0] === board[i][1] && board[i][1] === board[i][2] && board[i][2] === board[i][3]) {
+      if (board[i][0] !== null) return board[i][0]
+    }
+  }
+  return null
 }
 
 function checkColumnWinner () {
