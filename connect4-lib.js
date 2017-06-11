@@ -39,10 +39,20 @@ function isBoardFull () {
 
 function checkRowWinner (board) {
   // should return null || 'winner_red' || 'winner_yellow'
-  // needs more work... is only chacking thefirst 4 spots
+  // this are the posible winning convination for row
+  const lines = [
+    [0, 1, 2, 3],
+    [1, 2, 3, 4],
+    [2, 3, 4, 5]
+  ]
+
   for (let i = 0; i < board.length; i++) {
-    if (board[i][0] === board[i][1] && board[i][1] === board[i][2] && board[i][2] === board[i][3]) {
-      if (board[i][0] !== null) return board[i][0]
+    for (let j = 0; j < lines.length; j++) {
+      const [a, b, c, d] = lines[i]
+
+      if (board[i][a] === board[i][b] && board[i][b] === board[i][c] && board[i][c] === board[i][d]) {
+        if (board[i][a] !== null) return board[i][a]
+      }
     }
   }
   return null
@@ -61,13 +71,14 @@ function checkDiagonalWinner () {
 // returns true or false
 function validBoard (board) {
   // checks if is not an Array or undenied
-  if (typeof board === 'undefined' || board.constructor !== Array) return false
-
-  // checks for row/pices lenght
-  if (board.length === 7 && board[0].length === 6 && board[1].length === 6 &&
-                            board[2].length === 6 && board[3].length === 6 &&
-                            board[4].length === 6 && board[5].length === 6) {
-    return true
+  if (!board) return false
+  if (board.constructor === Array) {
+    // checks for row/pices lenght
+    if (board.length === 7 && board[0].length === 6 && board[1].length === 6 &&
+                              board[2].length === 6 && board[3].length === 6 &&
+                              board[4].length === 6 && board[5].length === 6) {
+      return true
+    }
   }
   return false
 }

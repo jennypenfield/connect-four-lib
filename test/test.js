@@ -134,27 +134,27 @@ function testBadInput () {
     assert.strictEqual(connect4Lib.gameStatus(), null)
   })
 
-  it('gameStatus should return null if a game board is not passed to it 1', function () {
+  it('gameStatus should return null if the argument is "true"', function () {
     assert.strictEqual(connect4Lib.gameStatus(true), null)
   })
 
-  it('gameStatus should return null if a game board is not passed to it 2', function () {
+  it('gameStatus should return null if the argument is "null"', function () {
     assert.strictEqual(connect4Lib.gameStatus(null), null)
   })
 
-  it('gameStatus should return null if a game board is not passed to it 3', function () {
+  it('gameStatus should return null if the argument is a string', function () {
     assert.strictEqual(connect4Lib.gameStatus('banana'), null)
   })
 
-  it('gameStatus should return null if a game board is not passed to it 4', function () {
+  it('gameStatus should return null if the argument an empty object', function () {
     assert.strictEqual(connect4Lib.gameStatus({}), null)
   })
 
-  it('gameStatus should return null if a game board is not passed to it 5', function () {
+  it('gameStatus should return null if the argument is an empty array', function () {
     assert.strictEqual(connect4Lib.gameStatus([]), null)
   })
 
-  it('gameStatus should return null if a game board is not passed to it 6', function () {
+  it('gameStatus should return null if a game board is not full', function () {
     assert.strictEqual(connect4Lib.gameStatus(notQuiteAFullBoard), null)
   })
 
