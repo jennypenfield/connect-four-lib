@@ -61,9 +61,9 @@ function checkDiagonalWinner () {
 // returns true or false
 function validBoard (board) {
   // checks if is not an Array or undenied
-  if (typeof board === 'undefined' || board.constructor !== Array) return false
+  if (typeof board === 'undefined' || board.constructor !== Array || !board) return false
 
-  // checks for row/pices lenght
+  // checks for row/pieces length
   if (board.length === 7 && board[0].length === 6 && board[1].length === 6 &&
                             board[2].length === 6 && board[3].length === 6 &&
                             board[4].length === 6 && board[5].length === 6) {

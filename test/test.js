@@ -46,14 +46,115 @@ const redRowWin1 = [
   [null, null, null, null, null, null]
 ]
 
+const redRowWin2 = [
+  ['r', 'r', 'y', 'y', null, null],
+  ['y', 'r', 'y', null, null, null],
+  ['y', 'r', null, null, null, null],
+  ['r', 'r', null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null]
+]
+
+const yellowRowWin1 = [
+  ['r', 'y', 'y', 'y', 'r', null], // yellow row win from first column, fourth row
+  ['y', 'r', 'r', 'y', null, null],
+  ['y', 'y', 'r', 'y', null, null],
+  ['r', 'r', 'r', 'y', null, null],
+  ['r', null, null, null, null, null],
+  ['y', null, null, null, null, null],
+  ['r', null, null, null, null, null]
+]
+
+const yellowRowWin2 = [
+              //
+  ['r', 'y', 'y', 'y', null, null],
+  ['r', 'r', 'r', 'y', 'y', null],
+  ['y', 'y', 'r', 'y', 'r', null],
+  ['r', 'r', 'y', 'y', null, null], // yellow row win from fourth column, fourth row
+  ['r', 'r', 'y', 'r', null, null],
+  ['y', 'r', 'y', 'r', null, null],
+  ['r', 'y', 'y', null, null, null]
+]
+
 const redColWin1 = [
   ['r', 'r', 'r', 'r', null, null],
   ['y', 'y', 'y', null, null, null],
+  ['y', null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null]
+]
+
+const redColWin2 = [
+  ['r', 'y', 'r', 'r', 'r', 'r'],
+  ['y', 'r', 'y', null, null, null],
+  ['y', 'y', 'y', null, null, null],
+  ['y', null, null, null, null, null],
+  ['r', null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null]
+]
+
+const yellowColWin1 = [
+  ['r', 'r', 'r', null, null, null],
+  ['y', 'y', 'y', 'y', null, null],
   [null, null, null, null, null, null],
   [null, null, null, null, null, null],
   [null, null, null, null, null, null],
   [null, null, null, null, null, null],
   [null, null, null, null, null, null]
+]
+
+const yellowColWin2 = [
+  ['r', 'r', 'y', 'y', 'y', 'y'],
+  ['y', 'r', 'y', null, null, null],
+  ['r', null, null, null, null, null],
+  ['r', null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null]
+]
+
+const redDiagWin1 = [
+  ['r', 'r', 'y', 'y', null, null],
+  ['y', 'y', 'y', 'r', null, null],
+  ['y', 'r', 'r', null, null, null],
+  ['r', 'r', 'r', null, null, null],
+  ['r', 'y', null, null, null, null], // from fifth column bottom, up to the left
+  ['r', 'y', null, null, null, null],
+  ['y', null, null, null, null, null]
+]
+
+const redDiagWin2 = [
+  ['r', 'r', 'y', 'y', null, null],
+  ['y', 'y', 'y', 'r', null, null],
+  ['r', 'r', 'y', 'r', null, null], // from third column bottom, up to the right
+  ['r', 'r', 'r', 'y', null, null],
+  ['r', 'y', 'r', 'r', null, null],
+  ['y', 'y', 'y', 'r', 'r', null],
+  ['y', 'y', 'r', 'y', null, null]
+]
+
+const yellowDiagWin1 = [
+['r', null, null, null, null, null],
+['r', 'y', null, null, null, null], // from second column second row, up to the right
+['r', 'r', 'y', null, null, null],
+['y', 'r', 'y', 'y', null, null],
+['y', 'y', 'r', 'r', 'y', null],
+['y', 'r', 'y', 'r', null, null],
+[null, null, null, null, null, null]
+]
+
+const yellowDiagWin2 = [
+  ['r', 'r', 'y', 'y', null, null],
+  ['y', 'y', 'r', 'r', 'y', null],
+  ['y', 'r', 'y', 'y', null, null],
+  ['r', 'r', 'y', null, null, null],
+  ['r', 'y', 'y', null, null, null], // from fifth column second row, up to the left
+  ['r', 'r', 'r', 'y', null, null],
+  ['y', 'r', null, null, null, null]
 ]
 
 const bigBoard = [
