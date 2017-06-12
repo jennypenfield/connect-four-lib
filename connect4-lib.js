@@ -71,6 +71,7 @@ function checkDiagonalWinner () {
 // returns true or false
 function validBoard (board) {
   // checks if is not an Array or undenied
+
   if (!board) return false
   if (board.constructor === Array) {
     // checks for row/pices lenght
@@ -79,6 +80,7 @@ function validBoard (board) {
                               board[4].length === 6 && board[5].length === 6) {
       return true
     }
+
   }
   return false
 }
