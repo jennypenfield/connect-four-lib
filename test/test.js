@@ -189,20 +189,6 @@ const moreThan6pieces = [
 ]
 
 // -----------------------------------------------------------------------------
-// Full Board
-// -----------------------------------------------------------------------------
-
-function testIsBoardFull () {
-  it('board has one spot left with value of null', function () {
-    assert.strictEqual(connect4Lib.isBoardFull(boardInProgress), false)
-  })
-
-  it('empty board', function () {
-    assert.strictEqual(connect4Lib.isBoardFull(connect4Lib.EMPTY_BOARD), false)
-  })
-}
-
-// -----------------------------------------------------------------------------
 // Valid Board
 // -----------------------------------------------------------------------------
 
@@ -307,6 +293,10 @@ function testGameStatuses () {
     assert.equal(connect4Lib.gameStatus(connect4Lib.EMPTY_BOARD), 'in_progress')
   })
 
+  it('board in progress', function () {
+    assert.equal(connect4Lib.gameStatus(boardInProgress), 'in_progress')
+  })
+
   it('tie game 1', function () {
     assert.equal(connect4Lib.gameStatus(tieBoard1), 'tie')
   })
@@ -365,7 +355,6 @@ function testGameStatuses () {
 // Run the tests
 // -----------------------------------------------------------------------------
 
-describe('Full Board', testIsBoardFull)
 describe('validBoard', testValidBoard)
 describe('Bad Input', testBadInput)
 describe('Game Statuses', testGameStatuses)

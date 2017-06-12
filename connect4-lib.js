@@ -23,8 +23,8 @@ function gameStatus (board) {
   if (rowValue === 'r') return 'winner_red'
   if (rowValue === 'y') return 'winner_yellow'
 
-  checkColumnWinner()
-  checkDiagonalWinner()
+  checkColumnWinner(board)
+  checkDiagonalWinner(board)
 
   // if there is no winners and board is full return tie
   if (isBoardFull(board)) return 'tie'
@@ -34,9 +34,9 @@ function gameStatus (board) {
 }
 
 function isBoardFull (board) {
-  for (let i = 0; i < board.length; i++) {
-    for (let i2 = 0; i2 < board[i].length; i2++) {
-      if (board[i][i2] === null) {
+  for (let i1 = 0; i1 < board.length; i1++) {
+    for (let i2 = 0; i2 < board[i1].length; i2++) {
+      if (board[i1][i2] === null) {
         return false
       }
     }
@@ -67,6 +67,7 @@ function checkRowWinner (board) {
 
 function checkColumnWinner () {
   // TODO: should return null || 'winner_red' || 'winner_yellow'
+  console.log('hello')
 
 }
 
