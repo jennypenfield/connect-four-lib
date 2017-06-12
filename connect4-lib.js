@@ -27,14 +27,21 @@ function gameStatus (board) {
   checkDiagonalWinner()
 
   // if there is no winners and board is full return tie
-  if (isBoardFull) return 'tie'
+  if (isBoardFull(board)) return 'tie'
 
   // if there is no winners and board is NOT full return 'in_progress'
-  if (!isBoardFull) return 'in_progress'
+  if (!isBoardFull(board)) return 'in_progress'
 }
 
-function isBoardFull () {
-  // TODO: return true or false
+function isBoardFull (board) {
+  for (let i = 0; i < board.length; i++) {
+    for (let i2 = 0; i2 < board[i].length; i2++) {
+      if (board[i][i2] === null) {
+        return false
+      }
+    }
+  }
+  return true
 }
 
 function checkRowWinner (board) {
@@ -80,7 +87,6 @@ function validBoard (board) {
                               board[4].length === 6 && board[5].length === 6) {
       return true
     }
-
   }
   return false
 }
