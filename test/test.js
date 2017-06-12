@@ -17,6 +17,16 @@ const notQuiteAFullBoard = [
   ['y', 'r', 'y', 'r', 'y', 'r']
 ]
 
+const boardInProgress = [
+  ['y', 'r', 'y', 'r', 'y', null],
+  ['r', 'y', 'r', 'y', 'r', 'y'],
+  ['y', 'r', 'y', 'r', 'y', 'r'],
+  ['y', 'r', 'y', 'r', 'y', 'r'],
+  ['y', 'r', 'y', 'r', 'y', 'r'],
+  ['r', 'y', 'r', 'y', 'r', 'y'],
+  ['y', 'r', 'y', 'r', 'y', 'r']
+]
+
 const missingAColumn = [
   ['y', 'r', 'y', 'r', 'y', 'r'],
   ['r', 'y', 'r', 'y', 'r', 'y'],
@@ -283,6 +293,10 @@ function testGameStatuses () {
     assert.equal(connect4Lib.gameStatus(connect4Lib.EMPTY_BOARD), 'in_progress')
   })
 
+  it('board in progress', function () {
+    assert.equal(connect4Lib.gameStatus(boardInProgress), 'in_progress')
+  })
+
   it('tie game 1', function () {
     assert.equal(connect4Lib.gameStatus(tieBoard1), 'tie')
   })
@@ -291,10 +305,49 @@ function testGameStatuses () {
     assert.equal(connect4Lib.gameStatus(redRowWin1), 'winner_red')
   })
 
+  it('red row win 2', function () {
+    assert.strictEqual(connect4Lib.gameStatus(redRowWin2), 'winner_red')
+  })
+
+  it('yellow row win 1', function () {
+    assert.equal(connect4Lib.gameStatus(yellowRowWin1), 'winner_yellow')
+  })
+
+  it('yellow row win 2', function () {
+    assert.strictEqual(connect4Lib.gameStatus(yellowRowWin2), 'winner_yellow')
+  })
+
   it('red column win 1', function () {
     assert.equal(connect4Lib.gameStatus(redColWin1), 'winner_red')
   })
 
+  it('red column win 2', function () {
+    assert.equal(connect4Lib.gameStatus(redColWin2), 'winner_red')
+  })
+
+  it('yellow column win 1', function () {
+    assert.equal(connect4Lib.gameStatus(yellowColWin1), 'winner_yellow')
+  })
+
+  it('yellow column win 2', function () {
+    assert.equal(connect4Lib.gameStatus(yellowColWin2), 'winner_yellow')
+  })
+
+  it('red diagonal win 1', function () {
+    assert.equal(connect4Lib.gameStatus(redDiagWin1), 'winner_red')
+  })
+
+  it('red diagonal win 2', function () {
+    assert.equal(connect4Lib.gameStatus(redDiagWin2), 'winner_red')
+  })
+
+  it('yellow diagonal win 1', function () {
+    assert.equal(connect4Lib.gameStatus(yellowDiagWin1), 'winner_yellow')
+  })
+
+  it('yellow diagonal win 2', function () {
+    assert.equal(connect4Lib.gameStatus(yellowDiagWin2), 'winner_yellow')
+  })
   // TODO: add many more test cases here
 }
 
