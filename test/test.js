@@ -99,22 +99,22 @@ const redColWin1 = [
 
 const redColWin2 = [
   ['r', 'y', 'r', 'r', 'r', 'r'],
+  ['y', 'r', 'y', 'r', null, null],
+  ['y', 'y', 'y', 'r', null, null],
   ['y', 'r', 'y', null, null, null],
-  ['y', 'y', 'y', null, null, null],
-  ['y', null, null, null, null, null],
-  ['r', null, null, null, null, null],
-  [null, null, null, null, null, null],
-  [null, null, null, null, null, null]
+  ['r', 'r', 'r', null, null, null],
+  ['r', 'y', 'y', null, null, null],
+  ['y', 'r', 'y', 'y', null, null]
 ]
 
 const yellowColWin1 = [
   ['r', 'r', 'r', null, null, null],
   ['y', 'y', 'y', 'y', null, null],
-  [null, null, null, null, null, null],
-  [null, null, null, null, null, null],
-  [null, null, null, null, null, null],
-  [null, null, null, null, null, null],
-  [null, null, null, null, null, null]
+  ['r', 'r', 'y', null, null, null],
+  ['r', null, null, null, null, null],
+  ['r', null, null, null, null, null],
+  ['y', null, null, null, null, null],
+  ['y', null, null, null, null, null]
 ]
 
 const yellowColWin2 = [
@@ -303,22 +303,22 @@ function testGameStatuses () {
 
   it('red row win 1', function () {
     assert.deepStrictEqual(connect4Lib.gameStatus(redRowWin1), {winner: 'winner_red',
-      coordinates: [[0][0], [0][1], [0][2], [0][3]]})
+      coordinates: [[0][0], [1][0], [2][0], [3][0]]})
   })
 
   it('red row win 2', function () {
     assert.deepStrictEqual(connect4Lib.gameStatus(redRowWin2), {winner: 'winner_red',
-      coordinates: [[1][0], [1][1], [1][2], [1][3]]})
+      coordinates: [[0][1], [1][1], [2][1], [3][1]]})
   })
 
   it('yellow row win 1', function () {
     assert.deepStrictEqual(connect4Lib.gameStatus(yellowRowWin1), {winner: 'winner_yellow',
-      coordinates: [[3][0], [3][1], [3][2], [3][3]]})
+      coordinates: [[0][3], [1][3], [2][3], [3][3]]})
   })
 
   it('yellow row win 2', function () {
     assert.deepStrictEqual(connect4Lib.gameStatus(yellowRowWin2), {winner: 'winner_yellow',
-      coordinates: [[3][2], [4][2], [5][2], [6][2]]})
+      coordinates: [[2][3], [3][3], [4][3], [5][3]]})
   })
 
   it('red column win 1', function () {
