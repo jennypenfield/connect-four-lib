@@ -57,10 +57,10 @@ function checkRowWinner (board) {
         board[colIndex + 2][rowIndex] === board[colIndex][rowIndex] &&
         board[colIndex + 3][rowIndex] === board[colIndex][rowIndex]) {
         winnerCoordinates =
-        [[rowIndex][colIndex],
-          [rowIndex][colIndex + 1],
-          [rowIndex][colIndex + 2],
-          [rowIndex][colIndex + 3]]
+        [[colIndex][rowIndex],
+          [colIndex + 1][rowIndex],
+          [colIndex + 2][rowIndex],
+          [colIndex + 3][rowIndex]]
         return board[colIndex][rowIndex] // returns 'r' or 'y'
       }
     }
