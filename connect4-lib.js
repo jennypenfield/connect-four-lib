@@ -16,7 +16,7 @@ const emptyBoard = [
 function gameStatus (board) {
   // gameStatus should return null if it receives no arguments
   // should return null if a game board is not passed to it
-  // if (!validBoard(board)) return null
+  if (!validBoard(board)) return null
 
   // Check for row winners
   if (checkRowWinner(board) === 'r') return {winner: 'winner_red', coordinates: winnerCoordinates}
