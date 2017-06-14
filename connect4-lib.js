@@ -18,11 +18,9 @@ function gameStatus (board) {
   // should return null if a game board is not passed to it
   // if (!validBoard(board)) return null
 
-  // if there is a winner should return 'winner_red' || 'winner_yellow'
-  // let rowValue = checkRowWinner(board)
-  // if (rowValue === 'r') return 'winner_red'
-  // if (rowValue === 'y') return 'winner_yellow'
-  if (checkRowWinner(board) !== null) return checkRowWinner(board)
+  // Check for row winners
+  if (checkRowWinner(board) === 'r') return {winner: 'winner_red', coordinates: winnerCoordinates}
+  if (checkRowWinner(board) === 'y') return {winner: 'winner_yellow', coordinates: winnerCoordinates}
 
   // checkColumnWinner(board)
   // checkDiagonalWinner(board)
@@ -45,47 +43,27 @@ function isBoardFull (board) {
   return true
 }
 
-function checkRowWinner (board) {
-  // should return null || 'winner_red' || 'winner_yellow'
-  // this are the possible winning combination for row
-  let isLastCountRed = false
-  let isLastCountYellow = false
-  let countRed = 0
-  let countYellow = 0
-  let coordinateArray = []
+let winnerCoordinates = []
 
-  for (let colIndex = 0; colIndex < board.length; colIndex++) {
-    for (let rowIndex = 0; rowIndex < board[colIndex].length; rowIndex++) {
-      if (board[rowIndex][colIndex] === 'r') {
-        if (isLastCountRed || rowIndex === 0) {
-          countRed++
-        } else if (!isLastCountRed) {
-          coordinateArray = []
-          countRed = 1
-        }
-        coordinateArray.push([colIndex][rowIndex])
-        isLastCountRed = true
-        isLastCountYellow = false
-      } else if (board[rowIndex][colIndex] === 'y') {
-        if (isLastCountYellow || rowIndex === 0) {
-          countYellow++
-        } else if (!isLastCountYellow) {
-          coordinateArray = []
-          countYellow = 1
-        }
-        coordinateArray.push([colIndex][rowIndex])
-        isLastCountYellow = true
-        isLastCountRed = false
+function checkRowWinner (board) {
+  // should return null || 'r' || 'y'
+  const NUM_COLS = board.length
+  const NUM_ROWS = board[0].length
+
+  // traverses board array thru gameboard rows (represented as columns in the array)
+  for (let rowIndex = 0; rowIndex < NUM_ROWS; rowIndex++) {
+    for (let colIndex = 0; colIndex < NUM_COLS - 3; colIndex++) {
+      if (board[colIndex + 1][rowIndex] === board[colIndex][rowIndex] &&
+        board[colIndex + 2][rowIndex] === board[colIndex][rowIndex] &&
+        board[colIndex + 3][rowIndex] === board[colIndex][rowIndex]) {
+        winnerCoordinates =
+        [[rowIndex][colIndex],
+          [rowIndex][colIndex + 1],
+          [rowIndex][colIndex + 2],
+          [rowIndex][colIndex + 3]]
+        return board[colIndex][rowIndex] // returns 'r' or 'y'
       }
     }
-    if (countRed === 4) {
-      return {winner: 'winner_red', coordinates: coordinateArray}
-    }
-    if (countYellow === 4) {
-      return {winner: 'winner_yellow', coordinates: coordinateArray}
-    }
-    countRed = 0
-    countYellow = 0
   }
   return null
 }

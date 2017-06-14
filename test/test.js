@@ -302,19 +302,23 @@ function testGameStatuses () {
   })
 
   it('red row win 1', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(redRowWin1), {winner: 'winner_red', coordinates: [[0][0], [0][1], [0][2], [0][3]]})
+    assert.deepStrictEqual(connect4Lib.gameStatus(redRowWin1), {winner: 'winner_red',
+      coordinates: [[0][0], [0][1], [0][2], [0][3]]})
   })
 
   it('red row win 2', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(redRowWin2), 'winner_red')
+    assert.deepStrictEqual(connect4Lib.gameStatus(redRowWin2), {winner: 'winner_red',
+      coordinates: [[1][0], [1][1], [1][2], [1][3]]})
   })
 
   it('yellow row win 1', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(yellowRowWin1), 'winner_yellow')
+    assert.deepStrictEqual(connect4Lib.gameStatus(yellowRowWin1), {winner: 'winner_yellow',
+      coordinates: [[3][0], [3][1], [3][2], [3][3]]})
   })
 
   it('yellow row win 2', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(yellowRowWin2), 'winner_yellow')
+    assert.deepStrictEqual(connect4Lib.gameStatus(yellowRowWin2), {winner: 'winner_yellow',
+      coordinates: [[3][2], [4][2], [5][2], [6][2]]})
   })
 
   it('red column win 1', function () {
