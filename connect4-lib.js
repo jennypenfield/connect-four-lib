@@ -9,6 +9,15 @@ const emptyBoard = [
   [null, null, null, null, null, null]
 ]
 
+const redDiagWin1 = [
+  ['r', 'r', 'y', 'y', null, null],
+  ['y', 'y', 'y', [1,4], null, null],
+  ['y', 'r', [2,3], null, null, null],
+  ['r', [3,1], 'r', null, null, null],
+  [[4,0], 'y', null, null, null, null], // from fifth column bottom, up to the left
+  ['r', 'y', null, null, null, null],
+  ['y', null, null, null, null, null]
+]
 // returns the status of the game:
 // - red won? yellow won? tied?
 // - what squares are the winning position?
@@ -24,7 +33,9 @@ function gameStatus (board) {
   if (rowValue === 'y') return 'winner_yellow'
 
   checkColumnWinner(board)
+  createDiagonalCoordinates(board)
   checkDiagonalWinner(board)
+
 
   // if there is no winners and board is full return tie
   if (isBoardFull(board)) return 'tie'
@@ -71,10 +82,6 @@ function checkColumnWinner () {
 
 }
 
-function checkDiagonalWinner (board) {
-  // TODO: should return null || 'winner_red' || 'winner_yellow'
-}
-
 const NUM_COLUMNS = 7
 const NUM_ROWS = 6
 
@@ -109,13 +116,13 @@ function isDuplicate (item, index, arr) {
   return arr.indexOf(item) == index
 }
 
-// console.assert(isValidDiagonal([[0,0], [1, 1], [2, 2], [3, 3]]) === true)
-// console.assert(!isValidDiagonal([[0,0], [0, 1], [2, 2], [3, 3]]))
-// console.assert(!isValidDiagonal([[-1,-1], [0, 0], [1, 1], [2, 2]]))
+console.assert(!isValidDiagonal([[0,0], [0, 1], [2, 2], [3, 3]]))
+console.assert(!isValidDiagonal([[-1,-1], [0, 0], [1, 1], [2, 2]]))
+console.assert(!isValidDiagonal([[0,0], [1, 1], [2, 2], [3, 3]]))
 
 // returns an array of all the diagonal coordinates
 function createDiagonalCoordinates (board) {
-  var diagonals = []
+  let diagonals = []
   for (let colIdx = 0; colIdx < board.length; colIdx++) {
     let column = board[colIdx]
     for (let rowIdx = 0; rowIdx < column.length; rowIdx++) {
@@ -125,11 +132,21 @@ function createDiagonalCoordinates (board) {
   // Removing duplicates and only keeping valid diagnal coordinates.
   diagonals.filter(isValidDiagonal)
   diagonals.filter(isDuplicate)
-  console.log(diagonals)
-  return diagonals
+  let flattened = diagonals.reduce(function (a, b) {
+    console.log(a.concat(b))
+    return a.concat(b)
+  })
 }
 
-createDiagonalCoordinates(board)
+let diagonalArr = createDiagonalCoordinates(board)
+
+
+function checkDiagonalWinner (diagonalArr) {
+  console.log(diagonalArr)
+  for (let i = 0; i < diagonalArr.length; i++) {
+  }
+
+}
 
 // for a given square X, Y, return all four diagonals originating from it
 function createDiagonalsForSquare (column, row) {
@@ -140,8 +157,6 @@ function createDiagonalsForSquare (column, row) {
   //console.log('topRight:' + topRight, 'topLeft:' + topLeft, 'bottomLeft:' + bottomLeft, 'bottomRight:' + bottomRight)
   return [topRight, topLeft, bottomLeft, bottomRight]
 }
-
-createDiagonalsForSquare(0,0)
 
 // returns true or false
 function validBoard (board) {
