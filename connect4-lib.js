@@ -16,27 +16,28 @@ const emptyBoard = [
 function gameStatus (board) {
   // gameStatus should return null if it receives no arguments
   // should return null if a game board is not passed to it
-  if (!validBoard(board)) return null
+  // if (!validBoard(board)) return null
 
   // if there is a winner should return 'winner_red' || 'winner_yellow'
-  let rowValue = checkRowWinner(board)
-  if (rowValue === 'r') return 'winner_red'
-  if (rowValue === 'y') return 'winner_yellow'
+  // let rowValue = checkRowWinner(board)
+  // if (rowValue === 'r') return 'winner_red'
+  // if (rowValue === 'y') return 'winner_yellow'
+  if (checkRowWinner(board) !== null) return checkRowWinner(board)
 
-  checkColumnWinner(board)
-  checkDiagonalWinner(board)
-
-  // if there is no winners and board is full return tie
+  // checkColumnWinner(board)
+  // checkDiagonalWinner(board)
+  //
+  // // if there is no winners and board is full return tie
   if (isBoardFull(board)) return 'tie'
-
-  // if there is no winners and board is NOT full return 'in_progress'
+  //
+  // // if there is no winners and board is NOT full return 'in_progress'
   if (!isBoardFull(board)) return 'in_progress'
 }
 
 function isBoardFull (board) {
-  for (let i1 = 0; i1 < board.length; i1++) {
-    for (let i2 = 0; i2 < board[i1].length; i2++) {
-      if (board[i1][i2] === null) {
+  for (let colIndex = 0; colIndex < board.length; colIndex++) {
+    for (let rowIndex = 0; rowIndex < board[colIndex].length; rowIndex++) {
+      if (board[colIndex][rowIndex] === null) {
         return false
       }
     }
@@ -46,29 +47,51 @@ function isBoardFull (board) {
 
 function checkRowWinner (board) {
   // should return null || 'winner_red' || 'winner_yellow'
-  // this are the posible winning convination for row
-  const lines = [
-    [0, 1, 2, 3],
-    [1, 2, 3, 4],
-    [2, 3, 4, 5]
-  ]
+  // this are the possible winning combination for row
+  let isLastCountRed = false
+  let isLastCountYellow = false
+  let countRed = 0
+  let countYellow = 0
+  let coordinateArray = []
 
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < lines.length; j++) {
-      const [a, b, c, d] = lines[i]
-
-      if (board[i][a] === board[i][b] && board[i][b] === board[i][c] && board[i][c] === board[i][d]) {
-        if (board[i][a] !== null) return board[i][a]
+  for (let colIndex = 0; colIndex < board.length; colIndex++) {
+    for (let rowIndex = 0; rowIndex < board[colIndex].length; rowIndex++) {
+      if (board[rowIndex][colIndex] === 'r') {
+        if (isLastCountRed || rowIndex === 0) {
+          countRed++
+        } else if (!isLastCountRed) {
+          coordinateArray = []
+          countRed = 1
+        }
+        coordinateArray.push([colIndex][rowIndex])
+        isLastCountRed = true
+        isLastCountYellow = false
+      } else if (board[rowIndex][colIndex] === 'y') {
+        if (isLastCountYellow || rowIndex === 0) {
+          countYellow++
+        } else if (!isLastCountYellow) {
+          coordinateArray = []
+          countYellow = 1
+        }
+        coordinateArray.push([colIndex][rowIndex])
+        isLastCountYellow = true
+        isLastCountRed = false
       }
     }
+    if (countRed === 4) {
+      return {winner: 'winner_red', coordinates: coordinateArray}
+    }
+    if (countYellow === 4) {
+      return {winner: 'winner_yellow', coordinates: coordinateArray}
+    }
+    countRed = 0
+    countYellow = 0
   }
   return null
 }
 
 function checkColumnWinner () {
   // TODO: should return null || 'winner_red' || 'winner_yellow'
-  console.log('hello')
-
 }
 
 function checkDiagonalWinner () {
