@@ -142,19 +142,39 @@ const redDiagWin2 = [
   ['y', 'y', 'y', 'r', null, null],
   ['r', 'r', 'y', 'r', null, null], // from third column bottom, up to the right
   ['r', 'r', 'r', 'y', null, null],
-  ['r', 'y', 'r', 'r', null, null],
+  ['r', 'y', 'y', 'r', null, null],
   ['y', 'y', 'y', 'r', 'r', null],
   ['y', 'y', 'r', 'y', null, null]
 ]
 
+const redDiagWin3 = [
+  ['r', 'r', 'y', 'y', null, null],
+  ['y', 'y', 'y', 'r', null, null],
+  ['r', 'y', 'y', 'r', null, null], // from third column bottom, up to the right
+  ['r', 'r', 'r', 'y', null, null],
+  ['r', 'y', 'r', 'r', null, null],
+  ['y', 'y', 'y', 'r', null, null],
+  ['y', 'y', 'r', 'y', null, null]
+]
+
+const redDiagWin4 = [
+  ['r', 'r', 'y', 'r', null, null],
+  ['y', 'y', 'r', 'r', null, null],
+  ['r', 'r', 'y', 'y', null, null], // from third column bottom, up to the right
+  ['r', 'y', 'r', 'y', null, null],
+  ['r', 'y', 'r', 'r', null, null],
+  ['y', 'y', 'y', 'r', null, null],
+  ['y', 'y', 'r', 'y', null, null]
+]
+
 const yellowDiagWin1 = [
-['r', null, null, null, null, null],
-['r', 'y', null, null, null, null], // from second column second row, up to the right
-['r', 'r', 'y', null, null, null],
-['y', 'r', 'y', 'y', null, null],
-['y', 'y', 'r', 'r', 'y', null],
-['y', 'r', 'y', 'r', null, null],
-[null, null, null, null, null, null]
+  ['r', null, null, null, null, null],
+  ['r', 'y', null, null, null, null], // from second column second row, up to the right
+  ['r', 'r', 'y', null, null, null],
+  ['y', 'r', 'y', 'y', null, null],
+  ['y', 'y', 'r', 'r', 'y', null],
+  ['y', 'r', 'y', 'r', null, null],
+  [null, null, null, null, null, null]
 ]
 
 const yellowDiagWin2 = [
@@ -165,6 +185,26 @@ const yellowDiagWin2 = [
   ['r', 'y', 'y', null, null, null], // from fifth column second row, up to the left
   ['r', 'r', 'r', 'y', null, null],
   ['y', 'r', null, null, null, null]
+]
+
+const yellowDiagWin3 = [
+  ['r', null, null, null, null, null],
+  ['r', 'y', 'y', null, null, null], // from third column, up to the right
+  ['y', 'r', 'y', null, null, null],
+  ['r', 'y', 'r', 'r', null, null],
+  ['r', 'y', 'y', 'r', null, null],
+  ['y', 'r', 'r', 'y', null, null],
+  [null, null, null, null, null, null]
+]
+
+const yellowDiagWin4 = [
+  ['r', null, null, null, null, null],
+  ['r', null, null, null, null, null], // from seventh column, up to the left
+  ['r', 'y', 'y', null, null, null],
+  ['y', 'r', 'r', 'y', null, null],
+  ['y', 'y', 'y', 'r', 'y', null],
+  ['r', 'y', 'r', 'r', null, null],
+  ['y', null, null, null, null, null]
 ]
 
 const bigBoard = [
@@ -290,19 +330,19 @@ function testBadInput () {
 
 function testGameStatuses () {
   it('empty board in progress', function () {
-    assert.equal(connect4Lib.gameStatus(connect4Lib.EMPTY_BOARD), 'in_progress')
+    assert.strictEqual(connect4Lib.gameStatus(connect4Lib.EMPTY_BOARD), 'in_progress')
   })
 
   it('board in progress', function () {
-    assert.equal(connect4Lib.gameStatus(boardInProgress), 'in_progress')
+    assert.strictEqual(connect4Lib.gameStatus(boardInProgress), 'in_progress')
   })
 
   it('tie game 1', function () {
-    assert.equal(connect4Lib.gameStatus(tieBoard1), 'tie')
+    assert.strictEqual(connect4Lib.gameStatus(tieBoard1), 'tie')
   })
 
   it('red row win 1', function () {
-    assert.equal(connect4Lib.gameStatus(redRowWin1), 'winner_red')
+    assert.strictEqual(connect4Lib.gameStatus(redRowWin1), 'winner_red')
   })
 
   it('red row win 2', function () {
@@ -310,7 +350,7 @@ function testGameStatuses () {
   })
 
   it('yellow row win 1', function () {
-    assert.equal(connect4Lib.gameStatus(yellowRowWin1), 'winner_yellow')
+    assert.strictEqual(connect4Lib.gameStatus(yellowRowWin1), 'winner_yellow')
   })
 
   it('yellow row win 2', function () {
@@ -318,35 +358,51 @@ function testGameStatuses () {
   })
 
   it('red column win 1', function () {
-    assert.equal(connect4Lib.gameStatus(redColWin1), 'winner_red')
+    assert.strictEqual(connect4Lib.gameStatus(redColWin1), 'winner_red')
   })
 
   it('red column win 2', function () {
-    assert.equal(connect4Lib.gameStatus(redColWin2), 'winner_red')
+    assert.strictEqual(connect4Lib.gameStatus(redColWin2), 'winner_red')
   })
 
   it('yellow column win 1', function () {
-    assert.equal(connect4Lib.gameStatus(yellowColWin1), 'winner_yellow')
+    assert.strictEqual(connect4Lib.gameStatus(yellowColWin1), 'winner_yellow')
   })
 
   it('yellow column win 2', function () {
-    assert.equal(connect4Lib.gameStatus(yellowColWin2), 'winner_yellow')
+    assert.strictEqual(connect4Lib.gameStatus(yellowColWin2), 'winner_yellow')
   })
 
   it('red diagonal win 1', function () {
-    assert.equal(connect4Lib.gameStatus(redDiagWin1), 'winner_red')
+    assert.strictEqual(connect4Lib.gameStatus(redDiagWin1), 'winner_red')
   })
 
   it('red diagonal win 2', function () {
-    assert.equal(connect4Lib.gameStatus(redDiagWin2), 'winner_red')
+    assert.strictEqual(connect4Lib.gameStatus(redDiagWin2), 'winner_red')
+  })
+
+  it('red diagonal win 3', function () {
+    assert.strictEqual(connect4Lib.gameStatus(redDiagWin3), 'winner_red')
+  })
+
+  it('red diagonal win 4', function () {
+    assert.strictEqual(connect4Lib.gameStatus(redDiagWin4), 'winner_red')
   })
 
   it('yellow diagonal win 1', function () {
-    assert.equal(connect4Lib.gameStatus(yellowDiagWin1), 'winner_yellow')
+    assert.strictEqual(connect4Lib.gameStatus(yellowDiagWin1), 'winner_yellow')
   })
 
   it('yellow diagonal win 2', function () {
-    assert.equal(connect4Lib.gameStatus(yellowDiagWin2), 'winner_yellow')
+    assert.strictEqual(connect4Lib.gameStatus(yellowDiagWin2), 'winner_yellow')
+  })
+
+  it('yellow diagonal win 3', function () {
+    assert.strictEqual(connect4Lib.gameStatus(yellowDiagWin3), 'winner_yellow')
+  })
+
+  it('yellow diagonal win 4', function () {
+    assert.strictEqual(connect4Lib.gameStatus(yellowDiagWin4), 'winner_yellow')
   })
   // TODO: add many more test cases here
 }
