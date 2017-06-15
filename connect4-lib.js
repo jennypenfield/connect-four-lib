@@ -9,33 +9,27 @@ const emptyBoard = [
   [null, null, null, null, null, null]
 ]
 
-const redDiagWin1 = [
-  ['r', 'r', 'y', 'y', null, null],
-  ['y', 'y', 'y', [1,4], null, null],
-  ['y', 'r', [2,3], null, null, null],
-  ['r', [3,1], 'r', null, null, null],
-  [[4,0], 'y', null, null, null, null], // from fifth column bottom, up to the left
-  ['r', 'y', null, null, null, null],
-  ['y', null, null, null, null, null]
-]
 // returns the status of the game:
 // - red won? yellow won? tied?
 // - what squares are the winning position?
 // - returns null if the board passed in is not valid
 function gameStatus (board) {
+  checkDiagonalWinner(board)
+
+
+  if (checkDiagonalWinner(board) === 'r') return 'winner_red'
+  if (checkDiagonalWinner(board) === 'y') return 'winner_yellow'
+
+
   // gameStatus should return null if it receives no arguments
   // should return null if a game board is not passed to it
   if (!validBoard(board)) return null
-
   // if there is a winner should return 'winner_red' || 'winner_yellow'
   let rowValue = checkRowWinner(board)
   if (rowValue === 'r') return 'winner_red'
   if (rowValue === 'y') return 'winner_yellow'
 
-  checkColumnWinner(board)
-  createDiagonalCoordinates(board)
-  checkDiagonalWinner(board)
-
+  // // checkColumnWinner(board)
 
   // if there is no winners and board is full return tie
   if (isBoardFull(board)) return 'tie'
@@ -103,22 +97,35 @@ function isArray (Array) {
 }
 
 // are these coordinates a valid diagonal?
-function isValidDiagonal (coords) {
-  return isArray(coords) &&
-         coords.length === 4 &&
-         isValidSquare(coords[0]) &&
-         isValidSquare(coords[1]) &&
-         isValidSquare(coords[2]) &&
-         isValidSquare(coords[3])
-}
+function isValidDiagonal (col) {
+
+  for (var i = 0; i < col.length; i++) {
+    // return isValidSquare(col[i][0], col[i][1])
+    return col[i][0] >= 0 &&
+           col[i][0] < NUM_COLUMNS &&
+           col[i][1] >= 0 &&
+           col[i][1] < NUM_ROWS
+  }
+
+
+        // return isValidSquare(coords[0][1]) &&
+        //        isValidSquare(coords[0][1]) &&
+        //        isValidSquare(coords[0][1]) &&
+        //        isValidSquare(coords[0][1])
+  }
 
 function isDuplicate (item, index, arr) {
   return arr.indexOf(item) == index
 }
 
-console.assert(!isValidDiagonal([[0,0], [0, 1], [2, 2], [3, 3]]))
-console.assert(!isValidDiagonal([[-1,-1], [0, 0], [1, 1], [2, 2]]))
-console.assert(!isValidDiagonal([[0,0], [1, 1], [2, 2], [3, 3]]))
+// console.assert(!isValidDiagonal([[0,0], [0, 1], [2, 2], [3, 3]]))
+// console.assert(!isValidDiagonal([[-1,-1], [0, 0], [1, 1], [2, 2]]))
+// console.assert(!isValidDiagonal([[0,0], [1, 1], [2, 2], [3, 3]]))
+
+function flat(a, b) {
+  return a.concat(b)
+}
+
 
 // returns an array of all the diagonal coordinates
 function createDiagonalCoordinates (board) {
@@ -129,23 +136,48 @@ function createDiagonalCoordinates (board) {
       diagonals.push(createDiagonalsForSquare(colIdx, rowIdx))
     }
   }
+  let flatDiagonals = diagonals.reduce(flat)
+
+  // let filterDiagonalArr = flatDiagonals.filter(isValidDiagonal)
+  // console.log('F', filterDiagonalArr)
+
   // Removing duplicates and only keeping valid diagnal coordinates.
-  diagonals.filter(isValidDiagonal)
-  diagonals.filter(isDuplicate)
-  let flattened = diagonals.reduce(function (a, b) {
-    console.log(a.concat(b))
-    return a.concat(b)
-  })
+  // let validdiagonals = diagonals
+  // console.log(validdiagonals)
+  // let removeDuplicates = validdiagonals.filter(isDuplicate)
+
+  // console.log(diagonalArr)
+  return flatDiagonals
 }
 
-let diagonalArr = createDiagonalCoordinates(board)
 
+function checkDiagonalWinner (board) {
+  let diagonal = createDiagonalCoordinates(board)
+  // console.log(diagonal)
+  for (let i = 0; i < diagonal.length; i++) {
+    let a0 = diagonal[i][0][0]
+    let a1 = diagonal[i][0][1]
+    let b0 = diagonal[i][1][0]
+    let b1 = diagonal[i][1][1]
+    let c0 = diagonal[i][2][0]
+    let c1 = diagonal[i][2][1]
+    let d0 = diagonal[i][3][0]
+    let d1 = diagonal[i][3][1]
 
-function checkDiagonalWinner (diagonalArr) {
-  console.log(diagonalArr)
-  for (let i = 0; i < diagonalArr.length; i++) {
+    // console.log(board[a0,a1])
+
+    for (var j = 0; j < board.length; j++) {
+      // console.log(board[j][a0,a1])
+      if (board[j][a0,a1]) {
+        if (board[j][a0,a1] === board[j][b0,b1] &&
+            board[j][a0,a1] === board[j][c0,c1] &&
+            board[j][a0,a1] === board[j][d0,d1]) {
+        console.log('win', board[j][a0,a1])
+        return board[j][a0,a1]
+        }
+      }
+    }
   }
-
 }
 
 // for a given square X, Y, return all four diagonals originating from it
@@ -154,17 +186,15 @@ function createDiagonalsForSquare (column, row) {
   let topLeft = [[column, row], [column - 1, row - 1], [column - 2, row - 2], [column - 3, row - 3]]
   let bottomLeft = [[column, row], [column + 1, row - 1], [column + 2, row - 2], [column + 3, row - 3]]
   let bottomRight = [[column, row], [column + 1, row + 1], [column + 2, row + 2], [column + 3, row + 3]]
-  //console.log('topRight:' + topRight, 'topLeft:' + topLeft, 'bottomLeft:' + bottomLeft, 'bottomRight:' + bottomRight)
   return [topRight, topLeft, bottomLeft, bottomRight]
 }
 
 // returns true or false
 function validBoard (board) {
   // checks if is not an Array or undenied
-
   if (!board) return false
   if (board.constructor === Array) {
-    // checks for row/pices lenght
+    // checks for row/pices length
     if (board.length === 7 && board[0].length === 6 && board[1].length === 6 &&
                               board[2].length === 6 && board[3].length === 6 &&
                               board[4].length === 6 && board[5].length === 6) {
