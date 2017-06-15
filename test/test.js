@@ -46,6 +46,26 @@ const tieBoard1 = [
   ['y', 'r', 'y', 'r', 'y', 'r']
 ]
 
+const boardWithInvalidSquares1 = [
+  ['y', 'r', 'y', 'r', 'y', 'banana'],
+  ['r', 'y', 'r', 'y', 'r', 'y'],
+  ['y', 'r', 'y', 'r', 'y', 'r'],
+  ['y', 'r', 'y', 'r', 'y', 'r'],
+  ['y', 'r', 'y', 'r', 'y', 'r'],
+  ['r', 'y', 'r', 'y', 'r', 'y'],
+  ['y', 'r', 'y', 'r', 'y', 'r']
+]
+
+const boardWithInvalidSquares2 = [
+  ['y', 'r', 'y', 'r', 'y', null],
+  ['r', 'y', 'r', 'y', 'r', 'y'],
+  ['y', 'r', 'y', 'r', 'y', 'r'],
+  ['y', 'r', 'y', 'r', 'y', 'r'],
+  ['y', 'r', 'y', 'r', 2, 'r'],
+  ['r', 'y', 'r', 'y', 'r', 'y'],
+  ['y', 'r', 'y', 'r', 'y', 'r']
+]
+
 const redRowWin1 = [
   ['r', 'y', null, null, null, null],
   ['r', 'y', null, null, null, null],
@@ -77,7 +97,6 @@ const yellowRowWin1 = [
 ]
 
 const yellowRowWin2 = [
-              //
   ['r', 'y', 'y', 'y', null, null],
   ['r', 'r', 'r', 'y', 'y', null],
   ['y', 'y', 'r', 'y', 'r', null],
@@ -148,13 +167,13 @@ const redDiagWin2 = [
 ]
 
 const yellowDiagWin1 = [
-['r', null, null, null, null, null],
-['r', 'y', null, null, null, null], // from second column second row, up to the right
-['r', 'r', 'y', null, null, null],
-['y', 'r', 'y', 'y', null, null],
-['y', 'y', 'r', 'r', 'y', null],
-['y', 'r', 'y', 'r', null, null],
-[null, null, null, null, null, null]
+  ['r', null, null, null, null, null],
+  ['r', 'y', null, null, null, null], // from second column second row, up to the right
+  ['r', 'r', 'y', null, null, null],
+  ['y', 'r', 'y', 'y', null, null],
+  ['y', 'y', 'r', 'r', 'y', null],
+  ['y', 'r', 'y', 'r', null, null],
+  [null, null, null, null, null, null]
 ]
 
 const yellowDiagWin2 = [
@@ -225,14 +244,20 @@ function testValidBoard () {
     assert.strictEqual(connect4Lib.validBoard(missingAColumn), false)
   })
 
-  // TODO: add many more test cases here
-
   it('boards should not have more than 7 columns', function () {
     assert.strictEqual(connect4Lib.validBoard(bigBoard), false)
   })
 
   it('Columns should not have more than 6 pieces', function () {
     assert.strictEqual(connect4Lib.validBoard(moreThan6pieces), false)
+  })
+
+  it('Squares should be either "r" "y" or null 1', function () {
+    assert.strictEqual(connect4Lib.validBoard(boardWithInvalidSquares1), false)
+  })
+
+  it('Squares should be either "r" "y" or null 2', function () {
+    assert.strictEqual(connect4Lib.validBoard(boardWithInvalidSquares2), false)
   })
 }
 

@@ -9,6 +9,9 @@ const emptyBoard = [
   [null, null, null, null, null, null]
 ]
 
+const NUM_COLS = 7
+const NUM_ROWS = 6
+
 // returns the status of the game:
 // - red won? yellow won? tied?
 // - what squares are the winning position?
@@ -95,23 +98,41 @@ function checkColumnWinner (board) {
 
 function checkDiagonalWinner () {
   // TODO: should return null || 'winner_red' || 'winner_yellow'
-
 }
 
-// returns true or false
+// predicate function to check whether the board is formatted correctly
 function validBoard (board) {
-  // checks if is not an Array or undenied
+  // board must be an Array
+  if (!Array.isArray(board)) return false
 
-  if (!board) return false
-  if (board.constructor === Array) {
-    // checks for row/pices lenght
-    if (board.length === 7 && board[0].length === 6 && board[1].length === 6 &&
-                              board[2].length === 6 && board[3].length === 6 &&
-                              board[4].length === 6 && board[5].length === 6) {
-      return true
-    }
+  // board must have 7 columns
+  if (board.length !== NUM_COLS) return false
+
+  // rows must be valid
+  for (let i = 0; i < board.length; i++) {
+    if (!validRow(board[i])) return false
   }
-  return false
+
+  return true
+}
+
+function validRow (row) {
+  // row must be an Array
+  if (!Array.isArray(row)) return false
+
+  // row must have 6 squares
+  if (row.length !== NUM_ROWS) return false
+
+  // squares must be valid
+  for (let i = 0; i < row.length; i++) {
+    if (!validSquare(row[i])) return false
+  }
+
+  return true
+}
+
+function validSquare (sq) {
+  return sq === 'r' || sq === 'y' || sq === null
 }
 
 module.exports = {
