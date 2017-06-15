@@ -143,7 +143,7 @@ const redDiagWin2 = [
   ['r', 'r', 'y', 'r', null, null], // from third column bottom, up to the right
   ['r', 'r', 'r', 'y', null, null],
   ['r', 'y', 'r', 'r', null, null],
-  ['y', 'y', 'y', 'r', 'r', null],
+  ['y', 'y', 'y', 'r', null, null],
   ['y', 'y', 'r', 'y', null, null]
 ]
 
