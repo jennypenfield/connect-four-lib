@@ -22,6 +22,9 @@ function gameStatus (board) {
   if (checkRowWinner(board) === 'r') return {winner: 'winner_red', coordinates: winnerCoordinates}
   if (checkRowWinner(board) === 'y') return {winner: 'winner_yellow', coordinates: winnerCoordinates}
 
+  if (checkColumnWinner(board) === 'r') return {winner: 'winner_red', coordinates: winnerCoordinates}
+  if (checkColumnWinner(board) === 'y') return {winner: 'winner_yellow', coordinates: winnerCoordinates}
+
   // checkColumnWinner(board)
   // checkDiagonalWinner(board)
   //
@@ -68,8 +71,26 @@ function checkRowWinner (board) {
   return null
 }
 
-function checkColumnWinner () {
+function checkColumnWinner (board) {
   // TODO: should return null || 'winner_red' || 'winner_yellow'
+  const NUM_COLS = board.length
+  const NUM_ROWS = board[0].length
+
+  for (let colIndex = 0; colIndex < NUM_COLS; colIndex++) {
+    for (let rowIndex = 0; rowIndex < NUM_ROWS - 3; rowIndex++) {
+      if (board[colIndex][rowIndex + 1] === board[colIndex][rowIndex] &&
+        board[colIndex][rowIndex + 2] === board[colIndex][rowIndex] &&
+        board[colIndex][rowIndex + 3] === board[colIndex][rowIndex]) {
+        winnerCoordinates =
+        [[colIndex][rowIndex],
+          [colIndex][rowIndex + 1],
+          [colIndex][rowIndex + 2],
+          [colIndex][rowIndex + 3]]
+        return board[colIndex][rowIndex]
+      }
+    }
+  }
+  return null
 }
 
 function checkDiagonalWinner () {
