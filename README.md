@@ -30,11 +30,11 @@ yarn test
 * [Connect4Lib.validBoard](#c4validBoard)
 
 #### <a name='c4gameStatus'></a>`Connect4Lib.gameStatus(board)`
-> * This method needs to receive an array (the 'board') as an argument.
+* This method needs to receive an array (the 'board') as an argument.
 * The library uses a private method to determine the board's winning coordinates.
 
 This method returns:
-> * {status: 'winner_red', coordinates: coord} if there is a red winner.
+* {status: 'winner_red', coordinates: coord} if there is a red winner.
 * {status: 'winner_yellow', coordinates: coord} if there is a yellow winner.
 * {status: 'tie'} or {status: 'in_progress'}, depending
 on the current status of the game.
