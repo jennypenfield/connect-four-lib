@@ -21,15 +21,14 @@ yarn test
 
 ## API Documentation
 
-### Variables
 #### `Connect4Lib.EMPTY_BOARD`
 > Creates a 7x6 array of null elements.
 
-### The Connect4 Library has two public methods:
-* [Connect4Lib.gameStatus](#c4gameStatus)
-* [Connect4Lib.validBoard](#c4validBoard)
+### The Connect4 Library has two public functions:
+* [gameStatus(board)](#c4gameStatus)
+* [validBoard(board)](#c4validBoard)
 
-#### <a name='c4gameStatus'></a>`Connect4Lib.gameStatus(board)`
+#### <a name='c4gameStatus'></a>`gameStatus(board)`
 * This method needs to receive an array (the 'board') as an argument.
 * The library uses a private method to determine the board's winning coordinates.
 
@@ -39,7 +38,7 @@ This method returns:
 * {status: 'tie'} or {status: 'in_progress'}, depending
 on the current status of the game.
 
-#### <a name='c4validBoard'></a>`Connect4Lib.validBoard(board)`
+#### <a name='c4validBoard'></a>`validBoard(board)`
 This method needs to receive an array (the 'board') as an argument.
 The method returns false if the board passed is not an array, if the board does not have seven columns, or if the rows are invalid. The method returns true if preceding conditions are not met.
 
