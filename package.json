@@ -2,7 +2,7 @@
   "author": "Jennifer Penfield <jipenfield11@gmail.com>",
   "name": "connect4-lib",
   "description": "Library that handles the game logic for Connect Four",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/jennypenfield/connect-four-lib.git"
