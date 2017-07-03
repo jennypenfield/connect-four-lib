@@ -1,21 +1,28 @@
-// creates a 7x6 array of null elements
-function createEmptyBoard () {
-  let board = []
-  for (let colIdx = 0; colIdx < 7; colIdx++) {
-    let columns = []
-    for (let rowIdx = 0; rowIdx < 6; rowIdx++) {
-      columns.push(null)
-    }
-    board.push(columns)
-  }
-  return board
-}
+// connect4-lib.js - game logic for the classic game Connect Four
+// v3.0.0
+// https://github.com/jennypenfield/connect-four-lib
+//
+// Copyright (c) 2017, Jenny Penfield and other contributors
+// Released under the ISC license
+// https://github.com/jennypenfield/connect-four-lib/blob/master/LICENSE.md
 
 // toggle this to run the asserts
 const RUN_ASSERTS = false
 
 const NUM_COLS = 7
 const NUM_ROWS = 6
+
+function createEmptyBoard () {
+  let board = []
+  for (let colIdx = 0; colIdx < NUM_COLS; colIdx++) {
+    let column = []
+    for (let rowIdx = 0; rowIdx < NUM_ROWS; rowIdx++) {
+      column.push(null)
+    }
+    board.push(column)
+  }
+  return board
+}
 
 // returns the status of the game:
 // - red won? yellow won? tied?
