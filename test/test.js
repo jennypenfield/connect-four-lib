@@ -1,7 +1,7 @@
 /* global describe it */
 
 const assert = require('assert')
-const connect4Lib = require('../connect4-lib.js')
+const connectFourLib = require('../connect-four-lib.js')
 
 // -----------------------------------------------------------------------------
 // Test Boards
@@ -17,7 +17,7 @@ const emptyBoard1 = [
   [null, null, null, null, null, null]
 ]
 
-const emptyBoard2 = connect4Lib.createEmptyBoard()
+const emptyBoard2 = connectFourLib.createEmptyBoard()
 
 const notQuiteAFullBoard = [
   ['y', 'r', 'y', 'r', 'y'],
@@ -225,51 +225,51 @@ const moreThan6pieces = [
 
 function testValidBoard () {
   it('undefined is not a valid board', function () {
-    assert.strictEqual(connect4Lib.validBoard(), false)
+    assert.strictEqual(connectFourLib.validBoard(), false)
   })
 
   it('a string is not a valid board', function () {
-    assert.strictEqual(connect4Lib.validBoard('banana'), false)
+    assert.strictEqual(connectFourLib.validBoard('banana'), false)
   })
 
   it('a number is not a valid board', function () {
-    assert.strictEqual(connect4Lib.validBoard(8), false)
+    assert.strictEqual(connectFourLib.validBoard(8), false)
   })
 
   it('an object is not a valid board', function () {
-    assert.strictEqual(connect4Lib.validBoard({}), false)
+    assert.strictEqual(connectFourLib.validBoard({}), false)
   })
 
   it('boards must be 7 columns, 6 deep - 1', function () {
-    assert.strictEqual(connect4Lib.validBoard(notQuiteAFullBoard), false)
+    assert.strictEqual(connectFourLib.validBoard(notQuiteAFullBoard), false)
   })
 
   it('boards must be 7 columns, 6 deep - 2', function () {
-    assert.strictEqual(connect4Lib.validBoard(emptyBoard1), true)
+    assert.strictEqual(connectFourLib.validBoard(emptyBoard1), true)
   })
 
   it('boards must be 7 columns, 6 deep - 3', function () {
-    assert.strictEqual(connect4Lib.validBoard(tieBoard1), true)
+    assert.strictEqual(connectFourLib.validBoard(tieBoard1), true)
   })
 
   it('boards must be 7 columns, 6 deep - 4', function () {
-    assert.strictEqual(connect4Lib.validBoard(missingAColumn), false)
+    assert.strictEqual(connectFourLib.validBoard(missingAColumn), false)
   })
 
   it('boards should not have more than 7 columns', function () {
-    assert.strictEqual(connect4Lib.validBoard(bigBoard), false)
+    assert.strictEqual(connectFourLib.validBoard(bigBoard), false)
   })
 
   it('Columns should not have more than 6 pieces', function () {
-    assert.strictEqual(connect4Lib.validBoard(moreThan6pieces), false)
+    assert.strictEqual(connectFourLib.validBoard(moreThan6pieces), false)
   })
 
   it('Squares should be either "r" "y" or null 1', function () {
-    assert.strictEqual(connect4Lib.validBoard(boardWithInvalidSquares1), false)
+    assert.strictEqual(connectFourLib.validBoard(boardWithInvalidSquares1), false)
   })
 
   it('Squares should be either "r" "y" or null 2', function () {
-    assert.strictEqual(connect4Lib.validBoard(boardWithInvalidSquares2), false)
+    assert.strictEqual(connectFourLib.validBoard(boardWithInvalidSquares2), false)
   })
 }
 
@@ -279,43 +279,43 @@ function testValidBoard () {
 
 function testBadInput () {
   it('gameStatus should return null if it receives no arguments', function () {
-    assert.strictEqual(connect4Lib.gameStatus(), null)
+    assert.strictEqual(connectFourLib.gameStatus(), null)
   })
 
   it('gameStatus should return null if the argument is "true"', function () {
-    assert.strictEqual(connect4Lib.gameStatus(true), null)
+    assert.strictEqual(connectFourLib.gameStatus(true), null)
   })
 
   it('gameStatus should return null if the argument is "null"', function () {
-    assert.strictEqual(connect4Lib.gameStatus(null), null)
+    assert.strictEqual(connectFourLib.gameStatus(null), null)
   })
 
   it('gameStatus should return null if the argument is a string', function () {
-    assert.strictEqual(connect4Lib.gameStatus('banana'), null)
+    assert.strictEqual(connectFourLib.gameStatus('banana'), null)
   })
 
   it('gameStatus should return null if the argument an empty object', function () {
-    assert.strictEqual(connect4Lib.gameStatus({}), null)
+    assert.strictEqual(connectFourLib.gameStatus({}), null)
   })
 
   it('gameStatus should return null if the argument is an empty array', function () {
-    assert.strictEqual(connect4Lib.gameStatus([]), null)
+    assert.strictEqual(connectFourLib.gameStatus([]), null)
   })
 
   it('gameStatus should return null if a game board is not full', function () {
-    assert.strictEqual(connect4Lib.gameStatus(notQuiteAFullBoard), null)
+    assert.strictEqual(connectFourLib.gameStatus(notQuiteAFullBoard), null)
   })
 
   it('gameStatus should return null if a game board has more than 7 columns', function () {
-    assert.strictEqual(connect4Lib.gameStatus(bigBoard), null)
+    assert.strictEqual(connectFourLib.gameStatus(bigBoard), null)
   })
 
   it('gameStatus should return null if a game board is false', function () {
-    assert.strictEqual(connect4Lib.gameStatus(false), null)
+    assert.strictEqual(connectFourLib.gameStatus(false), null)
   })
 
   it('gameStatus should return null if a game board is undefined', function () {
-    assert.strictEqual(connect4Lib.gameStatus(undefined), null)
+    assert.strictEqual(connectFourLib.gameStatus(undefined), null)
   })
 }
 
@@ -325,74 +325,74 @@ function testBadInput () {
 
 function testGameStatuses () {
   it('empty board in progress', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(emptyBoard1), {status: 'in_progress'})
+    assert.deepStrictEqual(connectFourLib.gameStatus(emptyBoard1), {status: 'in_progress'})
   })
 
   it('board in progress', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(boardInProgress), {status: 'in_progress'})
+    assert.deepStrictEqual(connectFourLib.gameStatus(boardInProgress), {status: 'in_progress'})
   })
 
   it('tie game 1', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(tieBoard1), {status: 'tie'})
+    assert.deepStrictEqual(connectFourLib.gameStatus(tieBoard1), {status: 'tie'})
   })
 
   it('red row win 1', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(redRowWin1), {status: 'winner_red',
+    assert.deepStrictEqual(connectFourLib.gameStatus(redRowWin1), {status: 'winner_red',
       coordinates: [[0, 0], [1, 0], [2, 0], [3, 0]]})
   })
 
   it('red row win 2', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(redRowWin2), {status: 'winner_red',
+    assert.deepStrictEqual(connectFourLib.gameStatus(redRowWin2), {status: 'winner_red',
       coordinates: [[0, 1], [1, 1], [2, 1], [3, 1]]})
   })
 
   it('yellow row win 1', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(yellowRowWin1), {status: 'winner_yellow',
+    assert.deepStrictEqual(connectFourLib.gameStatus(yellowRowWin1), {status: 'winner_yellow',
       coordinates: [[0, 3], [1, 3], [2, 3], [3, 3]]})
   })
 
   it('yellow row win 2', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(yellowRowWin2), {status: 'winner_yellow',
+    assert.deepStrictEqual(connectFourLib.gameStatus(yellowRowWin2), {status: 'winner_yellow',
       coordinates: [[0, 3], [1, 3], [2, 3], [3, 3]]})
   })
 
   it('red column win 1', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(redColWin1), {status: 'winner_red',
+    assert.deepStrictEqual(connectFourLib.gameStatus(redColWin1), {status: 'winner_red',
       coordinates: [[0, 0], [0, 1], [0, 2], [0, 3]]})
   })
 
   it('red column win 2', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(redColWin2), {status: 'winner_red',
+    assert.deepStrictEqual(connectFourLib.gameStatus(redColWin2), {status: 'winner_red',
       coordinates: [[0, 2], [0, 3], [0, 4], [0, 5]]})
   })
 
   it('yellow column win 1', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(yellowColWin1), {status: 'winner_yellow',
+    assert.deepStrictEqual(connectFourLib.gameStatus(yellowColWin1), {status: 'winner_yellow',
       coordinates: [[1, 0], [1, 1], [1, 2], [1, 3]]})
   })
 
   it('yellow column win 2', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(yellowColWin2), {status: 'winner_yellow',
+    assert.deepStrictEqual(connectFourLib.gameStatus(yellowColWin2), {status: 'winner_yellow',
       coordinates: [[5, 2], [5, 3], [5, 4], [5, 5]]})
   })
 
   it('red diagonal win 1', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(redDiagWin1), {status: 'winner_red',
+    assert.deepStrictEqual(connectFourLib.gameStatus(redDiagWin1), {status: 'winner_red',
       coordinates: [[1, 3], [2, 2], [3, 1], [4, 0]]})
   })
 
   it('red diagonal win 2', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(redDiagWin2), {status: 'winner_red',
+    assert.deepStrictEqual(connectFourLib.gameStatus(redDiagWin2), {status: 'winner_red',
       coordinates: [[2, 0], [3, 1], [4, 2], [5, 3]]})
   })
 
   it('yellow diagonal win 1', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(yellowDiagWin1), {status: 'winner_yellow',
+    assert.deepStrictEqual(connectFourLib.gameStatus(yellowDiagWin1), {status: 'winner_yellow',
       coordinates: [[1, 1], [2, 2], [3, 3], [4, 4]]})
   })
 
   it('yellow diagonal win 2', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(yellowDiagWin2), {status: 'winner_yellow',
+    assert.deepStrictEqual(connectFourLib.gameStatus(yellowDiagWin2), {status: 'winner_yellow',
       coordinates: [[1, 4], [2, 3], [3, 2], [4, 1]]})
   })
 }
@@ -407,8 +407,8 @@ function testEmptyBoard () {
   })
 
   it('boards are unique objects', function () {
-    let emptyBoard3 = connect4Lib.createEmptyBoard()
-    let emptyBoard4 = connect4Lib.createEmptyBoard()
+    let emptyBoard3 = connectFourLib.createEmptyBoard()
+    let emptyBoard4 = connectFourLib.createEmptyBoard()
     assert.ok(emptyBoard3 !== emptyBoard4)
   })
 }

@@ -1,13 +1,13 @@
 {
   "author": "Jennifer Penfield <jipenfield11@gmail.com>",
-  "name": "connect4-lib",
+  "name": "connect-four-lib",
   "description": "Library that handles the game logic for Connect Four",
   "version": "3.0.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/jennypenfield/connect-four-lib.git"
   },
-  "main": "connect4-lib.js",
+  "main": "connect-four-lib.js",
   "devDependencies": {
     "assert": "1.4.1",
     "mocha": "3.4.2"

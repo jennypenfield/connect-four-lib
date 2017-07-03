@@ -1,4 +1,4 @@
-// connect4-lib.js - game logic for the classic game Connect Four
+// connect-four-lib.js - game logic for the classic game Connect Four
 // v3.0.0
 // https://github.com/jennypenfield/connect-four-lib
 //

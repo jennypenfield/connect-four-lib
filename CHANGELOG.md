@@ -1,6 +1,7 @@
 # Connect Four Library Changelog
 
 ## 3.0.0 - 2017-07-02
+- Changed name from `connect4-lib` to `connect-four-lib`.
 - Removed `EMPTY_BOARD` constant. Use `createEmptyBoard()` instead.
 
 ## 2.0.0 - 2017-07-02
