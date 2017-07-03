@@ -7,6 +7,18 @@ const connect4Lib = require('../connect4-lib.js')
 // Test Boards
 // -----------------------------------------------------------------------------
 
+const emptyBoard1 = [
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null]
+]
+
+const emptyBoard2 = connect4Lib.createEmptyBoard()
+
 const notQuiteAFullBoard = [
   ['y', 'r', 'y', 'r', 'y'],
   ['r', 'y', 'r', 'y', 'r', 'y'],
@@ -207,8 +219,6 @@ const moreThan6pieces = [
   [null, null, null, null, null, null]
 ]
 
-const emptyBoard = connect4Lib.createEmptyBoard()
-
 // -----------------------------------------------------------------------------
 // Valid Board
 // -----------------------------------------------------------------------------
@@ -235,7 +245,7 @@ function testValidBoard () {
   })
 
   it('boards must be 7 columns, 6 deep - 2', function () {
-    assert.strictEqual(connect4Lib.validBoard(connect4Lib.EMPTY_BOARD), true)
+    assert.strictEqual(connect4Lib.validBoard(emptyBoard1), true)
   })
 
   it('boards must be 7 columns, 6 deep - 3', function () {
@@ -315,7 +325,7 @@ function testBadInput () {
 
 function testGameStatuses () {
   it('empty board in progress', function () {
-    assert.deepStrictEqual(connect4Lib.gameStatus(connect4Lib.EMPTY_BOARD), {status: 'in_progress'})
+    assert.deepStrictEqual(connect4Lib.gameStatus(emptyBoard1), {status: 'in_progress'})
   })
 
   it('board in progress', function () {
@@ -393,13 +403,13 @@ function testGameStatuses () {
 
 function testEmptyBoard () {
   it('create empty board', function () {
-    assert.deepStrictEqual(connect4Lib.EMPTY_BOARD, emptyBoard)
+    assert.deepStrictEqual(emptyBoard2, emptyBoard1)
   })
 
   it('boards are unique objects', function () {
-    let emptyBoard1 = connect4Lib.createEmptyBoard()
-    let emptyBoard2 = connect4Lib.createEmptyBoard()
-    assert.ok(emptyBoard1 !== emptyBoard2)
+    let emptyBoard3 = connect4Lib.createEmptyBoard()
+    let emptyBoard4 = connect4Lib.createEmptyBoard()
+    assert.ok(emptyBoard3 !== emptyBoard4)
   })
 }
 

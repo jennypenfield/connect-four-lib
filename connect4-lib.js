@@ -1,14 +1,4 @@
-// an empty board is represented as an array of arrays
-const emptyBoard = [
-  [null, null, null, null, null, null],
-  [null, null, null, null, null, null],
-  [null, null, null, null, null, null],
-  [null, null, null, null, null, null],
-  [null, null, null, null, null, null],
-  [null, null, null, null, null, null],
-  [null, null, null, null, null, null]
-]
-
+// creates a 7x6 array of null elements
 function createEmptyBoard () {
   let board = []
   for (let colIdx = 0; colIdx < 7; colIdx++) {
@@ -205,7 +195,6 @@ function validSquare (sq) {
 
 module.exports = {
   createEmptyBoard: createEmptyBoard,
-  EMPTY_BOARD: emptyBoard,
   gameStatus: gameStatus,
   validBoard: validBoard
 }
