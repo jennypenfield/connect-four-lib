@@ -21,26 +21,54 @@ yarn test
 ## API Documentation
 
 ### The Connect4 Library has three public functions:
-* [createEmptyBoard()](#c4createEmptyBoard)
-* [gameStatus(board)](#c4gameStatus)
-* [validBoard(board)](#c4validBoard)
+
+- [`createEmptyBoard()`](#c4createEmptyBoard)
+- [`gameStatus(board)`](#c4gameStatus)
+- [`validBoard(board)`](#c4validBoard)
+
+### board Array
+
+The Connect Four board is represented as a 7x6 Array of Arrays (columns / rows).
+Each element in the Array is either `null`, `'r'`, or `'y'`.
 
 #### <a name='c4createEmptyBoard'></a>`createEmptyBoard()`
-> This method creates a 7x6 array of null elements.
+
+This method returns a new, empty board array. A square without a piece is
+represented with `null`, so an empty board looks like this in JSON format:
+
+```json
+[
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null],
+  [null, null, null, null, null, null]
+]
+```
 
 #### <a name='c4gameStatus'></a>`gameStatus(board)`
->* This method needs to receive an array (the 'board') as an argument.
-* The library uses a private method to determine the board's winning coordinates.
 
-Return values:
->* {status: 'winner_red', coordinates: coord} if there is a red winner.
-* {status: 'winner_yellow', coordinates: coord} if there is a yellow winner.
-* {status: 'tie'} or {status: 'in_progress'}, depending
-on the current status of the game.
+This function accepts a game board and returns the current game status:
+
+- If the board is not in a valid 7x6 Array format:
+  - `null`
+- If neither color has won and the game is still in progress:
+  - `{status: 'in_progress'}`
+- If neither color has won, and the game is over (the board is full):
+  - `{status: 'tie'}`
+- If red has won:
+  - `{status: 'winner_red', coordinates: [[0, 0], [1, 0], [2, 0], [3, 0]]}`
+- If yellow has won:
+  - `{status: 'winner_yellow', coordinates: [[0, 3], [1, 3], [2, 3], [3, 3]]}`
+
+In the winning cases, `coordinates` will be an array of the winning pieces
+column / row coordinates.
 
 #### <a name='c4validBoard'></a>`validBoard(board)`
-> This method needs to receive an array (the 'board') as an argument.
-The method returns false if the board passed is not an array, if the board does not have seven columns, or if the rows are invalid. The method returns true if preceding conditions are not met.
+
+Predicate function to ensure that the board format is valid.
 
 ## License
 
