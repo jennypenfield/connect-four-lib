@@ -1,4 +1,8 @@
-# Connect Four Library [![Build Status](https://travis-ci.org/jennypenfield/connect-four-lib.svg?branch=master)](https://travis-ci.org/jennypenfield/connect-four-lib)
+# Connect Four Library
+
+ <a href="https://travis-ci.org/jennypenfield/connect-four-lib"><img src="https://travis-ci.org/jennypenfield/connect-four-lib.svg?branch=master" alt="build status"></a>
+ <a href="https://www.npmjs.com/package/connect4-lib"><img src="https://img.shields.io/npm/v/connect4-lib.svg" alt="npm version"></a>
+ <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Standard - JavaScript Style Guide"></a>
 
 This is a project to implement the game logic for the classic game
 [Connect Four].
