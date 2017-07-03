@@ -207,6 +207,8 @@ const moreThan6pieces = [
   [null, null, null, null, null, null]
 ]
 
+const emptyBoard = connect4Lib.createEmptyBoard()
+
 // -----------------------------------------------------------------------------
 // Valid Board
 // -----------------------------------------------------------------------------
@@ -293,8 +295,6 @@ function testBadInput () {
   it('gameStatus should return null if a game board is not full', function () {
     assert.strictEqual(connect4Lib.gameStatus(notQuiteAFullBoard), null)
   })
-
-  // TODO: add many more test cases here
 
   it('gameStatus should return null if a game board has more than 7 columns', function () {
     assert.strictEqual(connect4Lib.gameStatus(bigBoard), null)
@@ -385,8 +385,22 @@ function testGameStatuses () {
     assert.deepStrictEqual(connect4Lib.gameStatus(yellowDiagWin2), {status: 'winner_yellow',
       coordinates: [[1, 4], [2, 3], [3, 2], [4, 1]]})
   })
+}
 
-  // TODO: add some more test cases here
+// -----------------------------------------------------------------------------
+// Test Empty Board
+// -----------------------------------------------------------------------------
+
+function testEmptyBoard () {
+  it('create empty board', function () {
+    assert.deepStrictEqual(connect4Lib.EMPTY_BOARD, emptyBoard)
+  })
+
+  it('boards are unique objects', function () {
+    let emptyBoard1 = connect4Lib.createEmptyBoard()
+    let emptyBoard2 = connect4Lib.createEmptyBoard()
+    assert.ok(emptyBoard1 !== emptyBoard2)
+  })
 }
 
 // -----------------------------------------------------------------------------
@@ -396,3 +410,4 @@ function testGameStatuses () {
 describe('validBoard', testValidBoard)
 describe('Bad Input', testBadInput)
 describe('Game Statuses', testGameStatuses)
+describe('Create an Empty Board', testEmptyBoard)

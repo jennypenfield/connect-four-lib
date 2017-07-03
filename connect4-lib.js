@@ -9,6 +9,18 @@ const emptyBoard = [
   [null, null, null, null, null, null]
 ]
 
+function createEmptyBoard () {
+  let board = []
+  for (let colIdx = 0; colIdx < 7; colIdx++) {
+    let columns = []
+    for (let rowIdx = 0; rowIdx < 6; rowIdx++) {
+      columns.push(null)
+    }
+    board.push(columns)
+  }
+  return board
+}
+
 // toggle this to run the asserts
 const RUN_ASSERTS = false
 
@@ -192,6 +204,7 @@ function validSquare (sq) {
 }
 
 module.exports = {
+  createEmptyBoard: createEmptyBoard,
   EMPTY_BOARD: emptyBoard,
   gameStatus: gameStatus,
   validBoard: validBoard
