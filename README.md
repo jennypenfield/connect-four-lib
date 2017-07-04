@@ -24,7 +24,7 @@ yarn test
 
 ## API Documentation
 
-### The Connect4 Library has three public functions:
+### The Connect Four Library has three public functions:
 
 - [`createEmptyBoard()`](#c4createEmptyBoard)
 - [`gameStatus(board)`](#c4gameStatus)
