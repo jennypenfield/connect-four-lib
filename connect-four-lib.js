@@ -1,5 +1,5 @@
 // connect-four-lib.js - game logic for the classic game Connect Four
-// v3.0.0
+// v3.0.1
 // https://github.com/jennypenfield/connect-four-lib
 //
 // Copyright (c) 2017, Jenny Penfield and other contributors
@@ -7,16 +7,16 @@
 // https://github.com/jennypenfield/connect-four-lib/blob/master/LICENSE.md
 
 // toggle this to run the asserts
-const RUN_ASSERTS = false
+var RUN_ASSERTS = false
 
-const NUM_COLS = 7
-const NUM_ROWS = 6
+var NUM_COLS = 7
+var NUM_ROWS = 6
 
 function createEmptyBoard () {
-  let board = []
-  for (let colIdx = 0; colIdx < NUM_COLS; colIdx++) {
-    let column = []
-    for (let rowIdx = 0; rowIdx < NUM_ROWS; rowIdx++) {
+  var board = []
+  for (var colIdx = 0; colIdx < NUM_COLS; colIdx++) {
+    var column = []
+    for (var rowIdx = 0; rowIdx < NUM_ROWS; rowIdx++) {
       column.push(null)
     }
     board.push(column)
@@ -33,10 +33,10 @@ function gameStatus (board) {
   if (!validBoard(board)) return null
 
   // check for any winners
-  let allPossibleWinningCoords = generateCoords(board)
-  for (let i = 0; i < allPossibleWinningCoords.length; i++) {
-    let coord = allPossibleWinningCoords[i]
-    let squareResult = checkCoord(board, coord)
+  var allPossibleWinningCoords = generateCoords(board)
+  for (var i = 0; i < allPossibleWinningCoords.length; i++) {
+    var coord = allPossibleWinningCoords[i]
+    var squareResult = checkCoord(board, coord)
     if (squareResult === 'r') {
       return {status: 'winner_red', coordinates: coord}
     } else if (squareResult === 'y') {
@@ -54,8 +54,8 @@ function gameStatus (board) {
 }
 
 function isBoardFull (board) {
-  for (let colIdx = 0; colIdx < board.length; colIdx++) {
-    for (let rowIdx = 0; rowIdx < board[colIdx].length; rowIdx++) {
+  for (var colIdx = 0; colIdx < board.length; colIdx++) {
+    for (var rowIdx = 0; rowIdx < board[colIdx].length; rowIdx++) {
       if (board[colIdx][rowIdx] === null) {
         return false
       }
@@ -73,20 +73,20 @@ if (RUN_ASSERTS) {
 // on the coordinate squares
 // returns 'r', 'y', or null
 function checkCoord (board, coord) {
-  const c0 = coord[0]
-  const c1 = coord[1]
-  const c2 = coord[2]
-  const c3 = coord[3]
+  var c0 = coord[0]
+  var c1 = coord[1]
+  var c2 = coord[2]
+  var c3 = coord[3]
 
-  const x0 = c0[0]
-  const x1 = c1[0]
-  const x2 = c2[0]
-  const x3 = c3[0]
+  var x0 = c0[0]
+  var x1 = c1[0]
+  var x2 = c2[0]
+  var x3 = c3[0]
 
-  const y0 = c0[1]
-  const y1 = c1[1]
-  const y2 = c2[1]
-  const y3 = c3[1]
+  var y0 = c0[1]
+  var y1 = c1[1]
+  var y2 = c2[1]
+  var y3 = c3[1]
 
   if (board[x0][y0] === 'r' &&
       board[x1][y1] === 'r' &&
@@ -110,17 +110,17 @@ function checkCoord (board, coord) {
 // [[0, 0], [0, 1], [0, 2], [0, 3]]
 // [[5, 2], [5, 3], [5, 4], [5, 5]]
 function generateCoords (board) {
-  let allCoords = []
+  var allCoords = []
 
-  for (let colIdx = 0; colIdx < board.length; colIdx++) {
-    for (let rowIdx = 0; rowIdx < board[colIdx].length; rowIdx++) {
-      let coordsForThisSquare = coordsForSquare(colIdx, rowIdx)
+  for (var colIdx = 0; colIdx < board.length; colIdx++) {
+    for (var rowIdx = 0; rowIdx < board[colIdx].length; rowIdx++) {
+      var coordsForThisSquare = coordsForSquare(colIdx, rowIdx)
       allCoords = allCoords.concat(coordsForThisSquare)
     }
   }
 
   // remove invalid coords
-  let validCoords = allCoords.filter(validCoord)
+  var validCoords = allCoords.filter(validCoord)
 
   // TODO: remove duplicate coordinates here
 
@@ -130,14 +130,14 @@ function generateCoords (board) {
 // returns an array of all of the possible winning coordinates that start on this square
 // NOTE: even returns "impossible" coordinates
 function coordsForSquare (x, y) {
-  const straightUp = [[x, y], [x, y + 1], [x, y + 2], [x, y + 3]]
-  const topRight = [[x, y], [x + 1, y + 1], [x + 2, y + 2], [x + 3, y + 3]]
-  const straightRight = [[x, y], [x + 1, y], [x + 2, y], [x + 3, y]]
-  const bottomRight = [[x, y], [x + 1, y - 1], [x + 2, y - 2], [x + 3, y - 3]]
-  const straightDown = [[x, y], [x, y - 1], [x, y - 2], [x, y - 3]]
-  const bottomLeft = [[x, y], [x - 1, y - 1], [x - 2, y - 2], [x - 3, y - 3]]
-  const straightLeft = [[x, y], [x - 1, y], [x - 2, y], [x - 3, y]]
-  const topLeft = [[x, y], [x - 1, y + 1], [x - 2, y + 2], [x - 3, y + 3]]
+  var straightUp = [[x, y], [x, y + 1], [x, y + 2], [x, y + 3]]
+  var topRight = [[x, y], [x + 1, y + 1], [x + 2, y + 2], [x + 3, y + 3]]
+  var straightRight = [[x, y], [x + 1, y], [x + 2, y], [x + 3, y]]
+  var bottomRight = [[x, y], [x + 1, y - 1], [x + 2, y - 2], [x + 3, y - 3]]
+  var straightDown = [[x, y], [x, y - 1], [x, y - 2], [x, y - 3]]
+  var bottomLeft = [[x, y], [x - 1, y - 1], [x - 2, y - 2], [x - 3, y - 3]]
+  var straightLeft = [[x, y], [x - 1, y], [x - 2, y], [x - 3, y]]
+  var topLeft = [[x, y], [x - 1, y + 1], [x - 2, y + 2], [x - 3, y + 3]]
 
   return [straightUp, topRight, straightRight, bottomRight,
     straightDown, bottomLeft, straightLeft, topLeft]
@@ -158,8 +158,8 @@ if (RUN_ASSERTS) {
 
 // does this square exist on the board?
 function validSquareCoords (sq) {
-  const x = sq[0]
-  const y = sq[1]
+  var x = sq[0]
+  var y = sq[1]
 
   return x >= 0 && x < NUM_COLS &&
          y >= 0 && y < NUM_ROWS
@@ -174,7 +174,7 @@ function validBoard (board) {
   if (board.length !== NUM_COLS) return false
 
   // rows must be valid
-  for (let i = 0; i < board.length; i++) {
+  for (var i = 0; i < board.length; i++) {
     if (!validRow(board[i])) return false
   }
 
@@ -189,7 +189,7 @@ function validRow (row) {
   if (row.length !== NUM_ROWS) return false
 
   // squares must be valid
-  for (let i = 0; i < row.length; i++) {
+  for (var i = 0; i < row.length; i++) {
     if (!validSquare(row[i])) return false
   }
 

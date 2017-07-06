@@ -1,13 +1,13 @@
 /* global describe it */
 
-const assert = require('assert')
-const connectFourLib = require('../connect-four-lib.js')
+var assert = require('assert')
+var connectFourLib = require('../connect-four-lib.js')
 
 // -----------------------------------------------------------------------------
 // Test Boards
 // -----------------------------------------------------------------------------
 
-const emptyBoard1 = [
+var emptyBoard1 = [
   [null, null, null, null, null, null],
   [null, null, null, null, null, null],
   [null, null, null, null, null, null],
@@ -17,9 +17,9 @@ const emptyBoard1 = [
   [null, null, null, null, null, null]
 ]
 
-const emptyBoard2 = connectFourLib.createEmptyBoard()
+var emptyBoard2 = connectFourLib.createEmptyBoard()
 
-const notQuiteAFullBoard = [
+var notQuiteAFullBoard = [
   ['y', 'r', 'y', 'r', 'y'],
   ['r', 'y', 'r', 'y', 'r', 'y'],
   ['y', 'r', 'y', 'r', 'y', 'r'],
@@ -29,7 +29,7 @@ const notQuiteAFullBoard = [
   ['y', 'r', 'y', 'r', 'y', 'r']
 ]
 
-const boardInProgress = [
+var boardInProgress = [
   ['y', 'r', 'y', 'r', 'y', null],
   ['r', 'y', 'r', 'y', 'r', 'y'],
   ['y', 'r', 'y', 'r', 'y', 'r'],
@@ -39,7 +39,7 @@ const boardInProgress = [
   ['y', 'r', 'y', 'r', 'y', 'r']
 ]
 
-const missingAColumn = [
+var missingAColumn = [
   ['y', 'r', 'y', 'r', 'y', 'r'],
   ['r', 'y', 'r', 'y', 'r', 'y'],
   ['y', 'r', 'y', 'r', 'y', 'r'],
@@ -48,7 +48,7 @@ const missingAColumn = [
   ['r', 'y', 'r', 'y', 'r', 'y']
 ]
 
-const tieBoard1 = [
+var tieBoard1 = [
   ['y', 'r', 'y', 'r', 'y', 'r'],
   ['r', 'y', 'r', 'y', 'r', 'y'],
   ['y', 'r', 'y', 'r', 'y', 'r'],
@@ -58,7 +58,7 @@ const tieBoard1 = [
   ['y', 'r', 'y', 'r', 'y', 'r']
 ]
 
-const boardWithInvalidSquares1 = [
+var boardWithInvalidSquares1 = [
   ['y', 'r', 'y', 'r', 'y', 'banana'],
   ['r', 'y', 'r', 'y', 'r', 'y'],
   ['y', 'r', 'y', 'r', 'y', 'r'],
@@ -68,7 +68,7 @@ const boardWithInvalidSquares1 = [
   ['y', 'r', 'y', 'r', 'y', 'r']
 ]
 
-const boardWithInvalidSquares2 = [
+var boardWithInvalidSquares2 = [
   ['y', 'r', 'y', 'r', 'y', null],
   ['r', 'y', 'r', 'y', 'r', 'y'],
   ['y', 'r', 'y', 'r', 'y', 'r'],
@@ -78,7 +78,7 @@ const boardWithInvalidSquares2 = [
   ['y', 'r', 'y', 'r', 'y', 'r']
 ]
 
-const redRowWin1 = [
+var redRowWin1 = [
   ['r', 'y', null, null, null, null],
   ['r', 'y', null, null, null, null],
   ['r', 'y', null, null, null, null],
@@ -88,7 +88,7 @@ const redRowWin1 = [
   [null, null, null, null, null, null]
 ]
 
-const redRowWin2 = [
+var redRowWin2 = [
   ['r', 'r', 'y', 'y', null, null],
   ['y', 'r', 'y', null, null, null],
   ['y', 'r', null, null, null, null],
@@ -98,7 +98,7 @@ const redRowWin2 = [
   [null, null, null, null, null, null]
 ]
 
-const yellowRowWin1 = [
+var yellowRowWin1 = [
   ['r', 'y', 'y', 'y', 'r', null], // yellow row win from first column, fourth row
   ['y', 'r', 'r', 'y', null, null],
   ['y', 'y', 'r', 'y', null, null],
@@ -108,7 +108,7 @@ const yellowRowWin1 = [
   ['r', null, null, null, null, null]
 ]
 
-const yellowRowWin2 = [
+var yellowRowWin2 = [
   ['r', 'y', 'y', 'y', null, null],
   ['r', 'r', 'r', 'y', 'y', null],
   ['y', 'y', 'r', 'y', 'r', null],
@@ -118,7 +118,7 @@ const yellowRowWin2 = [
   ['r', 'y', 'r', null, null, null]
 ]
 
-const redColWin1 = [
+var redColWin1 = [
   ['r', 'r', 'r', 'r', null, null],
   ['y', 'y', 'y', null, null, null],
   ['y', null, null, null, null, null],
@@ -128,7 +128,7 @@ const redColWin1 = [
   [null, null, null, null, null, null]
 ]
 
-const redColWin2 = [
+var redColWin2 = [
   ['r', 'y', 'r', 'r', 'r', 'r'],
   ['y', 'r', 'y', 'r', null, null],
   ['y', 'y', 'y', 'r', null, null],
@@ -138,7 +138,7 @@ const redColWin2 = [
   ['y', 'r', 'y', 'y', null, null]
 ]
 
-const yellowColWin1 = [
+var yellowColWin1 = [
   ['r', 'r', 'r', null, null, null],
   ['y', 'y', 'y', 'y', null, null],
   ['r', 'r', 'y', null, null, null],
@@ -148,7 +148,7 @@ const yellowColWin1 = [
   ['y', null, null, null, null, null]
 ]
 
-const yellowColWin2 = [
+var yellowColWin2 = [
   ['r', 'r', 'y', 'r', 'y', 'y'],
   ['y', 'r', 'y', 'r', 'r', null],
   ['r', 'y', 'r', 'y', 'y', null],
@@ -158,7 +158,7 @@ const yellowColWin2 = [
   ['y', 'r', 'y', null, null, null]
 ]
 
-const redDiagWin1 = [
+var redDiagWin1 = [
   ['r', 'r', 'y', 'y', null, null],
   ['y', 'y', 'y', 'r', null, null],
   ['y', 'r', 'r', null, null, null],
@@ -168,7 +168,7 @@ const redDiagWin1 = [
   ['y', null, null, null, null, null]
 ]
 
-const redDiagWin2 = [
+var redDiagWin2 = [
   ['r', 'r', 'y', 'y', null, null],
   ['y', 'y', 'y', 'r', null, null],
   ['r', 'r', 'y', 'r', null, null], // from third column bottom, up to the right
@@ -178,7 +178,7 @@ const redDiagWin2 = [
   ['y', 'y', 'r', 'y', null, null]
 ]
 
-const yellowDiagWin1 = [
+var yellowDiagWin1 = [
   ['r', null, null, null, null, null],
   ['r', 'y', null, null, null, null], // from second column second row, up to the right
   ['r', 'r', 'y', null, null, null],
@@ -188,7 +188,7 @@ const yellowDiagWin1 = [
   [null, null, null, null, null, null]
 ]
 
-const yellowDiagWin2 = [
+var yellowDiagWin2 = [
   ['r', 'r', 'y', 'y', null, null],
   ['y', 'y', 'r', 'r', 'y', null],
   ['y', 'r', 'y', 'y', null, null],
@@ -198,7 +198,7 @@ const yellowDiagWin2 = [
   ['y', 'r', null, null, null, null]
 ]
 
-const bigBoard = [
+var bigBoard = [
   [null, null, null, null, null, null],
   [null, null, null, null, null, null],
   [null, null, null, null, null, null],
@@ -209,7 +209,7 @@ const bigBoard = [
   [null, null, null, null, null, null]
 ]
 
-const moreThan6pieces = [
+var moreThan6pieces = [
   [null, null, null, null, null, null],
   [null, null, null, null, null, null, null],
   [null, null, null, null, null, null],
@@ -407,8 +407,8 @@ function testEmptyBoard () {
   })
 
   it('boards are unique objects', function () {
-    let emptyBoard3 = connectFourLib.createEmptyBoard()
-    let emptyBoard4 = connectFourLib.createEmptyBoard()
+    var emptyBoard3 = connectFourLib.createEmptyBoard()
+    var emptyBoard4 = connectFourLib.createEmptyBoard()
     assert.ok(emptyBoard3 !== emptyBoard4)
   })
 }
